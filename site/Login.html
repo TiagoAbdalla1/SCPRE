@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <link rel="icon" type="image/png" href="images/icons/clockicon.ico" />
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Teko:700&display=swap" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+
+  <title>Sistema CPRE</title>
+
+</head>
+
+<body class="img-fundo-login">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-10 col-lg-12 col-md-9">
+        <div class="card-login card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <div class="row">
+
+              <div class="col-lg-6 d-none d-lg-block ">
+                <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+                <img class="img-fluid" src="img/Logomarca_DPU22.png" />
+              </div>
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <div class="text-center">
+                    <hr class="sidebar-divider d-none d-md-block">
+                    <h1 class="h4 text-white mb-4 font-weight-bold">Sistema CPRE </h1>
+                  </div>
+                  <hr class="sidebar-divider d-none d-md-block">
+                  <div class="user">
+                    <div class="form-group">
+                      <select id="nameSelect" onchange="verificaRegistro(this.value)" class="form-control " name=""
+                        required>
+                        <option value="SelecioneNo"  selected disabled>Selecione o seu nome</option>
+                      </select>
+                    </div>
+                    <div class="form-group ">
+                      <select id="horarioSelect" class="form-control" name="" required disabled >
+                        <option value="Selecione" selected disabled>Selecione o horário</option>
+                        <option value="entrada">Entrada</option>
+                        <option value="intervalo">Intervalo</option>
+                        <option value="retorno">Retorno (Intervalo)</option>
+                        <option value="saida">Saída</option>
+                        <option style="display:none" value="indis" disabled>Indisponível</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <input type="password" class="form-control" id="inputPassword" placeholder="Insira sua senha"
+                        required>
+                        <div class="text-center">
+                          <a class="small font-weight-bold">Senha de acesso: <a class=" font-weight-bold text-warning">123<a></a>
+                        </div>
+                        
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-reg btn-user btn-block font-weight-bold glow-button"
+                    id="btnRegPt">
+                    Confirmar Presença
+                  </button>
+                  <button type="button" class="btn btn-rela btn-user btn-block font-weight-bold glow-button"
+                    id="btnRelatorio">
+                    Acessar Relatório
+                  </button>
+                  <hr class="sidebar-divider d-none d-md-block">
+                  <div class="text-center">
+                    <a class="small font-weight-bold" href="Lista-Presenca.html">Lista de Presença</a>
+                   
+                  </div>
+                 
+                  <hr class="sidebar-divider d-none d-md-block">
+                </div>
+                
+              </div>
+              <i class="fa fa-info-circle icon-info" ></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" id="modalBorder">
+        <div class="modal-header">
+          <h5 class="modal-title text-white font-weight-bold" id="modalLoginTitle">teste</h5>
+          <button id="btnModalX" class="close " type="button" data-dismiss="modal" aria-label="Close">
+            <span class="text-white" aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body text-white font-weight-bold" id="modalLoginDesc">teste</div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-light font-weight-bold" id="btnModalOk">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="modal fade" id="modalNewPass" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" id="passModal">
+        <div class="modal-header">
+          <h5 class="modal-title text-white font-weight-bold" id="passTitle">teste</h5>
+          <button id="btnModalX" class="close " type="button" data-dismiss="modal" aria-label="Close">
+            <span class="text-white" aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body text-white font-weight-bold" id="passDesc">teste</div>
+        <div class="col-sm form-group">
+          <label class="text-white font-weight-bold">Nova senha:</label>
+        <input class="form-newPass" type="password" maxlength="9" pattern="([0-9]|[0-9]|[0-9])" id="newPass" title="Permitido somente senha numérica" required >
+        <span toggle="#password-field" class="fa fa-fw fa-eye config-newPass toggle-password"></span>
+      </div>
+        <div class="modal-footer">
+          <button class="btn btn-block btn-outline-light font-weight-bold" id="btnPassOk">Cadastrar Senha</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="js/jquery.ballon.js"></script>
+  <script src="js/authentication.js"></script>
+  <script src="js/moment.js"></script>
+  <script src="js/moment-with-locales.js"></script>
+  <script src="js/clock.js"></script>
+  <script src="js/script-daily.js"></script>
+
+
+</body>
+
+</html>

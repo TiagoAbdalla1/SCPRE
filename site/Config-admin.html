@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <link rel="icon" type="image/png" href="images/icons/userAdd.ico" />
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+
+  <title>Edicao de dados</title>
+
+</head>
+
+<body id="page-top">
+  <div id="wrapper">
+    <ul class="navbar-nav sidebar-img sidebar sidebar-dark accordion" id="accordionSidebar">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="Relatorio.html">
+        <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fas fa-clock"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Sistema RPES</div>
+        <sup>DPU</sup>
+      </a>
+      
+      <hr class="sidebar-divider my-0">
+      <li class="nav-item">
+        <a class="nav-link" href="Relatorio.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Relatório</span></a>
+      </li>
+      <hr class="sidebar-divider d-none d-md-block">
+      <li class="nav-item" id="menuAdministracao" style="display: none">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+          aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Administração</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Selecione a opção abaixo:</h6>
+            <a class="collapse-item" href="Cadastro.html">Cadastrar Usuário</a>
+            <a class="collapse-item" href="Alterar-senha.html">Alterar Senha</a>
+            <a class="collapse-item active" id="config-admin" href="Config-admin.html">Configurações Admin</a>
+          </div>
+        </div>
+      </li>
+      <hr class="sidebar-divider d-none d-md-block">
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+    </ul>
+    <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content">
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+          <div class="">
+            <h3 class="font-weight-bold text-dark">Configurações da Administração</h3>
+          </div>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle text-black-50" href="#" id="userDropdown" role="button"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class=" btn  btn-outline-profile profile-animation" id=btn-profile>
+                  <i class=" fa fa-user-circle"></i>
+                  <span class=" text-size-profile">Nome: <span id="userName"></span></span>
+                  <i class="fa fa-bars"></i>
+                </div>
+
+              </a>
+              <div class="drop-item-background dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="usuario-editar-dados.html">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 "></i>
+                  Editar Dados
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 "></i>
+                  Sair
+                </a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+        <div class="container-fluid">
+          <div class="container">
+            <div class="card o-hidden border-0 shadow-lg my-5">
+              <div class="card-body p-0">
+                <d++iv class="row">
+                  <div class="col-mb-4 d-none d-lg-block ">
+                  </div>
+                  <div class="form-relative-cad col-sm">
+                    <div class="p-5">
+                      <form class="user">
+                        <div class="form-group">
+                          <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <label class="input-group-text" for="inputGroupSelect01">Edição</label>
+                            </div>
+                            <select class="custom-select" id=optionsAdminEdit onchange="verifica(this.value)">
+                              <option selected>Selecione o que deseja editar</option>
+                              <option value="cargo">Cargos</option>
+                              <option value="justificativa">Justificativas</option>
+                              <option value="permissoes">Permissões</option>
+                              <option value="usuarios">Usuários </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="card tableCargo" id=>
+                          <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Cargos</h3>
+                          <div class="card-body">
+                            <div id="table" class="table-editable">
+                              <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i
+                                    class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span>
+                              <table class="table table-bordered table-responsive-md table-striped text-center">
+                                <thead>
+                                  <tr>
+                                    <th class="text-center">Nome do cargo</th>
+                                    <th class="text-center">Carga horária</th>
+                                    <th class="text-center">Remove</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td class="pt-3-half" contenteditable="true">Servidor</td>
+                                    <td class="pt-3-half" contenteditable="true">7</td>
+                                    <td>
+                                      <span class="table-remove"><button type="button"
+                                          class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td class="pt-3-half" contenteditable="true">Tercerizado</td>
+                                    <td class="pt-3-half" contenteditable="true">8</td>
+                                    </td>
+                                    <td>
+                                      <span class="table-remove"><button type="button"
+                                          class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td class="pt-3-half" contenteditable="true">Motorista</td>
+                                    <td class="pt-3-half" contenteditable="true">8</td>
+                                    </td>
+                                    <td>
+                                      <span class="table-remove"><button type="button"
+                                          class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td class="pt-3-half" contenteditable="true">Estágiario</td>
+                                    <td class="pt-3-half" contenteditable="true">4</td>
+                                    </td>
+                                    <td>
+                                      <span class="table-remove"><button type="button"
+                                          class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card tableJustificativa">
+                          <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Justificativas</h3>
+                          <div class="card-body">
+                            <div id="table" class="table-editable">
+                              <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i
+                                    class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span>
+                              <table class="table table-bordered table-responsive-md table-striped text-center">
+                                <thead>
+                                  <tr>
+                                    <th class="text-center">Justificativa</th>
+                                    <th class="text-center">Remove</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td class="pt-3-half" contenteditable="true">Esqueceu de bater o ponto</td>
+                                    </td>
+                                    <td>
+                                      <span class="table-remove"><button type="button"
+                                          class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
+                                    </td>
+                                  </tr>
+                                  <tr class="hide">
+                                    <td class="pt-3-half" contenteditable="true">Férias</td>
+                                    </td>
+                                    <td>
+                                      <span class="table-remove"><button type="button"
+                                          class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card tablePermissoes">
+                          <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Permissões</h3>
+                          <div class="card-body">
+                            <div id="table" class="table-editable">
+                              <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i
+                                    class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span>
+                              <table class="table table-bordered table-responsive-md table-striped text-center">
+                                <thead>
+                                  <tr>
+                                    <th class="text-center">Permissão</th>
+                                    <th class="text-center">Descrição</th>
+                                    <th class="text-center">Remove</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td class="pt-3-half" contenteditable="true">CRUD</td>
+                                    <td class="pt-3-half" contenteditable="true">Cadastrar-Listar-Atualizar-Deletar</td>
+                                    </td>
+                                    <td>
+                                      <span class="table-remove"><button type="button"
+                                          class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td class="pt-3-half" contenteditable="true">CU</td>
+                                    <td class="pt-3-half" contenteditable="true">Cadastrar-Atualizar</td>
+                                    </td>
+                                    <td>
+                                      <span class="table-remove"><button type="button"
+                                          class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card tableUsuarios">
+                          <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Usuários</h3>
+                          <div class="card-body">
+                            <div id="table" class="table-editable">
+                              <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i
+                                    class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span>
+                              <table class="table table-bordered table-responsive-md table-striped text-center">
+                                <thead>
+                                  <tr>
+                                    <th class="text-center">Nome do Usuário</th>
+                                    <th class="text-center">Senha</th>
+                                    <th class="text-center">Cargo</th>
+                                    <th class="text-center">Email</th>
+                                    <th class="text-center">Ramal</th>
+                                    <th class="text-center">Remover</th>
+                                    <th class="text-center">Desabilitar</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td class="pt-3-half" contenteditable="true">Aurelia Vega</td>
+                                    <td class="pt-3-half" contenteditable="true">304545</td>
+                                    <td class="pt-3-half" contenteditable="true">Estagiário</td>
+                                    <td class="pt-3-half" contenteditable="true">aurelia@gmail.com</td>
+                                    <td class="pt-3-half" contenteditable="true">1040</td>
+                                    <td class="pt-3-half">
+                                      <span class="table-remove"><button type="button"
+                                          class="btn btn-danger btn-rounded btn-sm my-0">Remover</button></span>
+                                    </td>
+                                    <td>
+                                      <span class="table-remove"><button type="button"
+                                          class="btn btn-warning btn-rounded btn-sm my-0">Desativar</button></span>
+                                    </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td class="pt-3-half" contenteditable="true">Wilson Silva</td>
+                                    <td class="pt-3-half" contenteditable="true">456521</td>
+                                    <td class="pt-3-half" contenteditable="true">Estagiário</td>
+                                    <td class="pt-3-half" contenteditable="true">WiSS@gmail.com</td>
+                                    <td class="pt-3-half" contenteditable="true">5541</td>
+                                    <td class="pt-3-half">
+                                      <span class="table-remove"><button type="button"
+                                          class="btn btn-danger btn-rounded btn-sm my-0">Remover</button></span>
+                                    </td>
+                                    <td>
+                                      <span class="table-remove"><button type="button"
+                                          class="btn btn-warning btn-rounded btn-sm my-0">Desativar</button></span>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="sticky-footer bg-white">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright &copy; SRPESDPU 2019</span>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Tem certeza que deseja sair?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Clique em Sair para encerrar a sessão.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+            <button class="btn btn-primary" id="btnLogout">Sair</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="js/animation.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.5/firebase.js"></script>
+    <script src="js/register.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/logout.js"></script>
+    <script src="js/table-edit-admin.js"></script>
+    <script src="js/admin-only.js"></script>
+    <script src="js/script-daily.js"></script>
+  
+
+
+
+
+
+</body>
+
+</html>

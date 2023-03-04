@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <link rel="stylesheet" type="text/css" href="vendor/datatables/datatables.min.css" />
+
+
+
+  <link rel="icon" type="image/png" href="images/icons/table.ico" />
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+
+
+  <title>Relatório</title>
+
+</head>
+
+<body id="page-top">
+  <div id="wrapper">
+    <ul class="sidebar-img navbar-nav  sidebar sidebar-dark accordion" id="accordionSidebar">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="Relatorio.html">
+        <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fas fa-clock"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Sistema CPRE</div>
+        <sup>DPU</sup>
+      </a>
+      <li class="nav-item">
+        <a class="nav-link">
+          <i class="fas fa-user fa-sm fa-fw mr-2"></i>
+          <span id="userName"></span></a>
+      </li>
+      <hr class="sidebar-divider my-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="Relatorio.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Relatório</span></a>
+      </li>
+      <hr class="sidebar-divider my-0">
+      <li class="nav-item">
+        <a class="nav-link" href="Lista-Presenca-interna.html">
+          <i class="fas fa-tasks"></i>
+          <span>Lista de Presença</span></a>
+
+      </li>
+      <hr class="sidebar-divider my-0">
+      <li class="nav-item">
+        <a class="nav-link" href="usuario-editar-dados.html">
+          <i class="fas fa-user-cog"></i>
+          <span>Perfil</span></a>
+      </li>
+      <hr class="sidebar-divider my-0">
+      <li class="nav-item" id="menuAdministracao" style="display: none">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+          aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Administração</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Selecione a opção abaixo:</h6>
+            <a class="collapse-item" href="Cadastro.html">Cadastro de Usuário</a>
+            <a class="collapse-item" href="Alterar-senha.html">Alteração de Senha</a>
+            <a class="collapse-item" id="config-admin" href="Config-admin.html">Configurações Admin</a>
+          </div>
+        </div>
+      </li>
+      <hr class="sidebar-divider d-none d-md-block">
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+    </ul>
+    <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content">
+        <div class="topnav">
+          <a class="font-weight-bold text-white">Relatório</a>
+          <div class="btn  btn-outline-profile" id=btn-profile href="#" data-toggle="modal" data-target="#logoutModal">
+            <i class="fas fa-sign-out-alt"></i>
+          </div>
+        </div>
+
+        <div class="container-fluid">
+          <br>
+          <br>
+          <div class="card shadow mb-4" id="card">
+            <div class="card-header">
+              <div class="container">
+                <div class="row font-weight-bold" id="BhHt">
+                  <div class="col-sm-6 ">Banco de horas: <a class="text-success" id="bancoDeHoras">0 horas</a>
+                  </div>
+                  <div class="col-sm-5" style="display: none;">Horas trabalhadas Total: <a class="text-primary" id="horasTrabalhadas">0 horas</a>
+                  </div>
+                  <div class="col-sm-5">Horas trabalhadas: <a class="text-primary" id="horasaTrabalhadas">0 horas</a>
+                  </div>
+                  <div id="textNome" class="form-control font-weight-bold" style="display: none" style="float: left">
+                  </div>
+                </div>
+                <div class="row font-weight-bold" id="ChDi">
+                  <div class="col-sm ">Carga Horaria: <a class="text-primary" id="cargaHoraria">0 horas</a></div>
+                  <div class="col-sm">
+                    Dia(s) inconsistente(s): <a class="text-danger" id="diasInconsistente">0 dias</a>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="dropdown container">
+              <div class="col-sm">
+                <div class="form-group" id="selectUsers">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                    </div>
+                  </div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text " for="inputGroupSelect01">Nome: </label>
+                    </div>
+                    <select class="custom-select " id=selectUser onchange="optionUsers(this.value)">
+                      <option style="display:none" selected disabled>Selecione o usuário desejado</option>
+                    </select>
+                  </div>
+                </div>
+
+
+                <div class="form-group container " id="selectUsers">
+                  <div class="row" style="float: left">
+                    <button class="btn btn-block btn-print btn-primary font-weight-bold" id="buttonPrint"
+                      style="display: none">Imprimir</button>
+                      <button class="btn btn-block btn-print btn-primary font-weight-bold" id="buttonfiltro"
+                      >Filtrar</button>
+                  </div>
+                 
+                  <div class="row" style="float: right">
+                    <div class="">
+                      <button class=" btn btn-block btn-animHover btn-concluir-edicao-user font-weight-bold"
+                        id="btnConcluirSelectedUser">Finalizar</button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="card-body">
+
+              <div class="table-editable" id="tableDivData">
+
+                <table border="1px" style="border-collapse: collapse;" class="table text-center table-bordered"
+                  id="dataTable" width="100%">
+                  <thead style="text-align: center">
+                    <tr>
+                      <th>Data</th>
+                      <th>Entrada</th>
+                      <th>Intervalo</th>
+                      <th>Retorno</th>
+                      <th>Saida</th>
+                      <th>Horas trabalhadas</th>
+                    </tr>
+                  </thead>
+                </table>
+                <br>
+                <table border="1px" style="border-collapse: collapse; font-size: 12px; display: none;" width="100%"
+                  class="table table-hover" id="notaEstagio">
+                  <!--style="display: none;"-->
+                  <tbody>
+                    <tr>
+                      <td>FATORES</td>
+                      <td>NOTAS</td>
+                      <td>Legenda</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>INTERESSE</p>
+                      </td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>APROVEITAMENTO</p>
+                      </td>
+                      <td></td>
+                      <td>
+                        <p><b>INSUFICIENTE:</b> Média de 0 a 4,9.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>CONDUTA</p>
+                      </td>
+                      <td></td>
+                      <td>
+                        <p><b>SUFICIENTE:</b> Média de 5 a 6,9.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>CAPACIDADE JURÍDICA</p>
+                      </td>
+                      <td></td>
+                      <td>
+                        <p><b>BOM:</b> Média de 7 a 8,9.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <p>MÉDIA</p>
+                      </td>
+                      <td></td>
+                      <td>
+                        <p><b>COM MÉRITO:</b> Média de 9 a 10.</p>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+                <div class="text-center" id="dataNotaEst" style="font-size: 12px;display: none;">
+                  <!--style="display: none;"-->
+                  <div style="float: right">
+                    <p>Data:__/__/____</p>
+                    <p>Assinatura do Supervisor</p>
+                    <p>__________________________</p>
+                    <p style="text-decoration: underline">
+                    </p>
+                  </div>
+
+                  <div style="float: left">
+                    <p>Data:__/__/____</p>
+                    <p>Assinatura do Estagiário</p>
+                    <p>__________________________</p>
+                    <p style="text-decoration: underline">
+
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; SCPRE-2019</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-center modalWrapper">
+    <div class="modal fade addNewInputs" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="modalAdd"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content modal-horizontal-just">
+          <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold text-primary ml-5">Justificativas</h4>
+            <button type="button" class="close text-primary" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body mx-3">
+            <div class="md-form mb-5">
+              <select type="text" id="inputJustificativa" class="custom-select">
+                <option value="select" selected disabled>Selecione uma Justificativa</option>
+              </select>
+            </div>
+            <!--somente deverá aparecer o horario quando for uma justificativa necessaria para especificar o horario-->
+
+            <div id="inputHorarioContainer" class="row text-center" style="display: none">
+
+              <div class="col-md-4 text-center inputHR-coluna">
+                <label>Data</label>
+                <input id="inputDataDia" class="form-control text-center" type="datejust" disabled>
+              </div>
+              <div class="col-md-4 text-center inputHR-coluna">
+                <label>Horas</label>
+                <input id="inputDataHorario" class="form-control text-center" type="time" step="1" value="00:00:00">
+              </div>
+
+
+            </div>
+
+            <div id="inputEditRegistros" class="row text-center" style="display: none">
+
+              <div class="col-md-4 text-center inputHR-coluna">
+                <label>Entrada</label>
+                <input id="inputHorasEntrada" class="form-control text-center" type="time">
+                <input id="inputHorasEntradaNova" class="form-control text-center" style="display: none">
+              </div>
+              <div class="col-md-4 text-center inputHR-coluna">
+                <label>Intervalo</label>
+                <input id="inputHorasIntervalo" class="form-control text-center" type="time" placeholder="Horas">
+                <input id="inputHorasIntervaloNova" class="form-control text-center" style="display: none">
+              </div>
+              <div class="col-md-4 text-center inputHR-coluna">
+                <label>Retorno</label>
+                <input id="inputHorasRetorno" class="form-control text-center" type="time" placeholder="Horas">
+                <input id="inputHorasRetornoNova" class="form-control text-center" style="display: none">
+              </div>
+              <div class="col-md-4 text-center inputHR-coluna">
+                <label>Saida</label>
+                <input id="inputHorasSaida" class="form-control text-center" type="time" placeholder="Horas">
+                <input id="inputHorasSaidaNova" class="form-control text-center" style="display: none">
+              </div>
+            </div>
+
+
+            <div class="md-form mb-5">
+              <input id="inputId" class="form-control" style="display: none">
+            </div>
+
+            <div class="md-form mb-5 " style="display: none">
+              <input id="inputPeriodo" class="form-control" style="display: none">
+            </div>
+            <div class="md-form mb-5" style="display: none">
+              <label>Data banco</label>
+              <input id="inputData" class="form-control">
+              <label>Data Nova</label>
+              <input id="inputDataNova" class="form-control">
+            </div>
+
+          </div>
+          <div class="modal-footer d-flex justify-content-center buttonAddFormWrapper">
+            <button class="btn btn-outline-primary btn-block buttonAdd" data-dismiss="modal"
+              id="btnConcluirJustificativa">Concluir Justificativa
+              <i class="fas fa-paper-plane-o ml-1"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="modalJustificativa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" id="modalBorder">
+        <div class="modal-header">
+          <h5 class="modal-title text-white font-weight-bold">Ponto justificado com sucesso!</h5>
+          <button id="btnModalX" class="close " type="button" data-dismiss="modal" aria-label="Close">
+            <span class="text-white" aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body text-white font-weight-bold">O seu horário foi justificado com sucesso, em alguns
+          segundos a página atualizará.</div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-light font-weight-bold" id="btnModalOk">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+
+
+
+  <div class="modal fade" id="modalFiltro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content bg-gradient-info">
+      <div class="modal-header">
+        <h5 class="modal-title text-white" id="exampleModalLabel">Filtrar Relatório</h5>
+        <button id="btnCloseModalFiltro" class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body text-white">Deseja filtrar o relatório?</div>
+    
+        <div class="container-fluid">
+      <select id="selectFiltro"  class="form-control text-center">
+        <option selected disabled hidden>Selecione o periodo a filtrar</option>
+        <option value="mes">Mês</option>
+        <option value="ano" >Ano</option>
+      </select>
+      <br>
+      <input id="inputFiltroTipo" type="text" style="display: none;">
+    </div>
+    <div class="row text-center" style="
+    padding-left: 69px;">
+    <div class="" id="divSelectMes" style="display: none;">
+      <div class="">
+        <select id="selectFiltroMes" class="form-control text-center">
+          <option selected hidden disabled value="">Mês</option>
+          <option value="1">Janeiro</option>
+          <option value="2">Fevereiro</option>
+          <option value="3">Março</option>
+          <option value="4">Abril</option>
+          <option value="5">Maio</option>
+          <option value="6">Junho</option>
+          <option value="7">Julho</option>
+          <option value="8">Agosto</option>
+          <option value="9">Setembro</option>
+          <option value="10">Outubro</option>
+          <option value="11">Novembro</option>
+          <option value="12">Dezembro</option>
+        </select>
+      </div>
+      <input id="inputFiltroMes" type="text" style="display: none;">
+    </div>
+    <div class="" id="divSelectAno" style="display: none;">
+        <select id="selectFiltroAno" class="form-control text-center">
+          <option selected hidden disabled value="">Ano</option>
+          <option value="2019">2019</option>
+          <option value="2020">2020</option>
+          <option value="2021">2021</option>
+        </select>
+    </div>
+    <input id="inputFiltroAno" type="text" style="display: none;">
+    </div>
+    <br>
+ 
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" id="btnCancelFilter" data-dismiss="modal" style="display: none;">Cancelar</button>
+        <button class="btn btn-primary" id="buttonFilter">Filtrar</button>
+        <input id="inputFiltroYN" type="text" style="display: none;">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalErroFiltro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content bg-danger">
+        <div class="modal-header">
+          <h5 class="modal-title text-white" id="exampleModalLabel">Sem retorno de dados</h5>
+          <button class="close text-white" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body text-white">Não foi possível encontrar registros neste periodo.<br/> Deseja tentar novamente?</div>
+        <div class="modal-footer">
+
+          <button class="btn btn-secondary" id="btnCancelRetFiltro" type="button" data-dismiss="modal" style="float: left;">Não</button>
+          <button class="btn btn-primary" id="btnRetFiltro" style="float: right;">Sim</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Tem certeza que deseja sair?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Clique em Sair para encerrar a sessão.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <button class="btn btn-primary" id="btnLogout">Sair</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+  <script type="text/javascript" src="vendor/datatables/datatables.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="js/animation.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/report.js"></script>
+  <script src="js/moment.js"></script>
+  <script src="js/moment-with-locales.js"></script>
+  <script src="js/logout.js"></script>
+  <script src="js/script-daily.js"></script>
+</body>
+
+</html>

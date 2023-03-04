@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <link rel="icon" type="image/png" href="images/icons/mail.ico" />
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+
+  <title>Esqueceu a senha?</title>
+
+</head>
+
+<body class="bg-gradient-primary">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-10 col-lg-12 col-md-9">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+          <div class="card-body p-0">
+            <div class="row">
+              <div class="col-lg-6 d-none d-lg-block ">
+                <img class="img-email" src="img/email-2517420_1280.png" alt="emailIcon">
+              </div>
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-2 font-weight-bold">Esqueceu sua senha?</h1>
+                    <hr>
+                    <p class="mb-4 font-weight-bold">Nós entendemos, isso acontece. Basta inserir seu endereço de email
+                      abaixo e
+                      enviaremos para você um link para alterar sua senha!</p>
+                  </div>
+                  <hr>
+                  <div class="user">
+                    <div class="form-group">
+                      <input type="email" class="form-control form-control-user" id="InputEmailSendPass"
+                        aria-describedby="emailHelp" placeholder="Insira seu endereço de email.">
+                    </div>
+                    <button class="btn btn-primary btn-user btn-block font-weight-bold" id="btnSendPass">
+                      Alterar senha
+                    </button>
+                  </div>
+                  <hr>
+                  <div class="text-center">
+                    <a class="small font-weight-bold" href="Login.html">Voltar a tela inicial</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="modalResetPass" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class=" modal-content " id="modalBorder">
+        <div class="modal-header">
+          <h5 class="modal-title text-white font-weight-bold" id="titleModal">teste </h5>
+          <button class="close font-weight-bold" type="button" data-dismiss="modal" aria-label="Close">
+            <span class="text-white" aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body text-white font-weight-bold " id="descModal">teste</div>
+        <div class="modal-footer" id="modalResetText">
+          <button class="btn btn-outline-light  font-weight-bold" id="btnSendPassOk">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="js/forgot.js"></script>
+
+</body>
+
+</html>

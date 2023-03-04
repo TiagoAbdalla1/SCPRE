@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <link rel="icon" type="image/png" href="images/icons/lockPass.ico" />
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+
+  <title>Alterar senha</title>
+
+</head>
+
+<body id="page-top">
+  <div id="wrapper">
+    <ul class="navbar-nav sidebar-img sidebar sidebar-dark accordion" id="accordionSidebar">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="Relatorio.html">
+        <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fas fa-clock"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Sistema CPRE</div>
+        <sup>DPU</sup>
+      </a>
+      <li class="nav-item">
+          <a class="nav-link">
+              <i  class="fas fa-user fa-sm fa-fw mr-2"></i>
+            <span id="userName"></span></a>
+        </li>
+      <hr class="sidebar-divider my-0">
+      <li class="nav-item">
+        <a class="nav-link" href="Relatorio.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Relatório</span></a>
+      </li>
+      <hr class="sidebar-divider my-0">
+      <li class="nav-item">
+        <a class="nav-link" href="Lista-Presenca-interna.html">
+          <i class="fas fa-tasks"></i>
+          <span>Lista de Presença</span></a>
+          
+      </li>
+      <hr class="sidebar-divider my-0">
+      <li class="nav-item">
+        <a class="nav-link" href="usuario-editar-dados.html">
+          <i class="fas fa-user-cog"></i>
+          <span >Perfil</span></a>
+      </li>
+      <hr class="sidebar-divider my-0">
+      <li class="nav-item active">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+          aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Administração</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Selecione a opção abaixo:</h6>
+            <a class="collapse-item" href="Cadastro.html">Cadastro de Usuário</a>
+            <a class="collapse-item active" href="Alterar-senha.html">Alteração de senha</a>
+            <a class="collapse-item" id="config-admin" href="Config-admin.html">Configurações Admin</a>
+          </div>
+        </div>
+      </li>
+      <hr class="sidebar-divider d-none d-md-block">
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+    </ul>
+    <div id="content-wrapper" class="d-flex flex-column">
+      <div id="content">
+          <div class="topnav">
+              <a class="font-weight-bold text-white">Alteração de senha</a>
+              <div class="btn  btn-outline-profile" id=btn-profile href="#" data-toggle="modal" data-target="#logoutModal">
+                <i class="fas fa-sign-out-alt"></i>
+              </div>
+            </div>
+        <body class="bg-gradient-primary">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-xl-10 col-lg-12 col-md-9">
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                  <div class="card-body p-0">
+                    <div class="row">
+                      <div class="col-lg-6 d-none d-lg-block ">
+                        <img class="img-email" src="img/resetPass.png" alt="emailIcon">
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="p-5">
+                          <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-2 font-weight-bold">Alteração de senha</h1>
+                            <p class="mb-4">Escolha o usuário e digite sua nova senha abaixo</p>
+                          </div>
+                          <div class="user">
+                            <div class="form-group">
+                              <div class="form-group">
+                                <select id="nameSelect" class="form-control" name=""
+                                  onchange="verificaUsuarioSenha(this.value)">
+                                  <option selected>Selecione o usuário</option>
+                                </select>
+                              <!--onchange="$('#inputPasswordReg').prop('disabled', false);" -->
+                              </div>
+                            </div>
+                             <div class="form-group ">
+                              <input type="password" class="form-control" id="inputPasswordReg" maxlength="9"
+                                placeholder="Insira sua nova senha" disabled>
+                                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                            </div>
+                            <button class="btn btn-animHover btn-user btn-block font-weight-bold" id="btnResetPass">
+                              Alterar senha
+                            </button>
+                          </div>
+                          <hr>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="modalForgot" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content" id="modalBorder">
+                <div class="modal-header">
+                  <h5 class="modal-title text-white font-weight-bold" id="modalForgotTitle">teste</h5>
+                  <button id="btnModalX" class="close " type="button" data-dismiss="modal" aria-label="Close">
+                    <span class="text-white" aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <div class="modal-body text-white font-weight-bold" id="modalForgotDesc">teste</div>
+                <div class="modal-footer">
+                  <button class="btn btn-outline-light font-weight-bold" id="btnSendPassOk">OK</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </body>
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tem certeza que deseja sair?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div class="modal-body">Clique em Sair para encerrar a sessão.</div>
+              <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary" id="btnLogout">Sair</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="modalChangePass" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content" id="modalBorder2">
+                <div class="modal-header">
+                  <h5 class="modal-title font-weight-bold text-white" id="modalCPassTitle">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body font-weight-bold text-white" id="modalCPassDesc">
+                
+                </div>
+                <div class="modal-footer">
+                  <button type="button" id="btnOkCPass" class="btn btn-primary font-weight-bold">OK</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+              <div class="copyright text-center my-auto">
+                <span>Copyright &copy; SCPRE-2019</span>
+              </div>
+            </div>
+          </footer>
+      </div>
+      
+    </div>
+         
+
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <script src="js/animation.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/logout.js"></script>
+        <script src="js/forgot.js"></script>
+        <script src="js/change-pass.js"></script>
+        <script src="js/admin-only.js"></script>
+        <script src="js/script-daily.js"></script>
+    
+</body>
+
+</html>

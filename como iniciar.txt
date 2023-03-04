@@ -1,0 +1,4 @@
+para iniciar o servidor basta:
+
+- npm install
+- npm start
